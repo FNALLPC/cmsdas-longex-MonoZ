@@ -17,10 +17,22 @@ ssh -L localhost:8NNN:localhost:8NNN lxplus.cern.ch
 ```
 
 ## Clone and run the setup once
+### CERN Setup
 ```
-git clone git@github.com:yhaddad/CMSDAS-MonoZ-Tutorial-2024.git
+git clone git@github.com:NJManganelli/CMSDAS-MonoZ-Tutorial-2024.git
 cd CMSDAS-MonoZ-Tutorial-2024
-sh bootstrap.sh
+sh bootstrap.sh bash cern
+# or for zsh shell
+sh bootstrap.sh zsh cern
+```
+### LPC 2025 Setup
+```
+cd ~/nobackup/LPCDAS2025
+git clone git@github.com:NJManganelli/CMSDAS-MonoZ-Tutorial-2024.git LPCDAS-MonoZ-Tutorial-2025
+cd LPCDAS-MonoZ-Tutorial-2025
+sh bootstrap.sh bash lpc
+# or for zsh shell
+sh bootstrap.sh zsh lpc
 ```
 
 ## Starting the environment
