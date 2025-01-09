@@ -14,9 +14,9 @@ Combine is a powerful tool with many different applications. For this excercise 
 Installing Combine
 ******************
 
-Documentation for combine can be found here: `combine docs <https://cms-analysis.github.io/HiggsAnalysis-CombinedLimit/latest/>`_. To install and run it on lxplus9, we'll need to use a singularity image of sl7 as there's no version of combine compatible with an EL9 CMSSW release as of yet. This is not too complicated as lxplus maintains these images that can be accesses sy simply typing `cmssw-el*` in the terminal where * can be 5,6,7,8 or 9. To close the image, simply type `exit`. 
+Documentation for combine can be found here: `combine docs <https://cms-analysis.github.io/HiggsAnalysis-CombinedLimit/latest/>`_. To install and run it on lxplus or cmslpc, we'll perform a direct installation (preferably in a folder colocated with the exercise folder, called e.g. `CombineTools`). 
 
-To set-up combine for this exercise, log into lxplus and setup a directory for this part of the exercise:
+To set-up combine for this exercise, log into lxplus/cmslpc and setup a directory for this part of the exercise:
 
 .. code-block:: bash
 
@@ -32,7 +32,7 @@ To set-up combine for this exercise, log into lxplus and setup a directory for t
     git fetch origin
     git checkout v10.0.1
     cd $CMSSW_BASE/src
-    scramv1 b clean; scramv1 b # always make a clean build
+    scramv1 b clean; scramv1 b
 
 
 Impact Plots
@@ -45,7 +45,10 @@ Let's run some impact plots:
 .. code-block:: html
 
       mkdir impact; cd impact
+      # CERN location
       cp -r /eos/user/c/cmsdas/long-exercises/MonoZ/datacards/cards-DMSimp_MonoZLL_NLO_Axial_1000_MXd-1 .
+      # LPC location
+      cp -r /eos/uscms/store/user/cmsdas/2025/long_exercises/long-ex-monoz/datacards/cards-DMSimp_MonoZLL_NLO_Axial_1000_MXd-1 .
       text2workspace.py cards-DMSimp_MonoZLL_NLO_Axial_1000_MXd-1/combined.dat -o workspace_TEST.root
       export PARAM="--rMin=-1 --rMax=4 --cminFallbackAlgo Minuit2,Migrad,0:0.05 --X-rtd MINIMIZER_analytic --X-rtd FAST_VERTICAL_MORPH"
       combineTool.py -M Impacts -d workspace_TEST.root -m 125 -n TEST --robustFit 1 --X-rtd FITTER_DYN_STEP --doInitialFit --allPars $PARAM;
@@ -126,7 +129,7 @@ Once we have this FitDiagnostics file from the instructions above we can start t
 `SWAN <https://swan.web.cern.ch/swan/>`_.
 
 
-Click on the large link and a menu should appear. The environment is fine as it is naturally configured so hit the "start my session" button. Here you can start new projects and open jupyter notebooks to write code. The advantage of swan is that it is hosted with EOS so we have access to all of our files. You can access your EOS space from lxplus by going to /eos/user/<first letter of username>/<username> (make a symlink to this for easier access). Your projects will appear in the directory `SWAN_projects`. We will use this tool to do the plotting from this point. You can make new directory for the long exercise and clone the repo here: `Github <https://github.com/yhaddad/CMSDAS-MonoZ-Tutorial-2024>`_.
+Click on the large link and a menu should appear. The environment is fine as it is naturally configured so hit the "start my session" button. Here you can start new projects and open jupyter notebooks to write code. The advantage of swan is that it is hosted with EOS so we have access to all of our files. You can access your EOS space from lxplus by going to /eos/user/<first letter of username>/<username> (make a symlink to this for easier access). Your projects will appear in the directory `SWAN_projects`. We will use this tool to do the plotting from this point. You can make new directory for the long exercise and clone the repo here: `Github <https://github.com/FNALLPC/cmsdas-longex-MonoZ>`_.
 
 Comparing Postfit
 *****************

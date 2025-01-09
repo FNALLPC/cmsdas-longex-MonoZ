@@ -1,43 +1,85 @@
 #!/usr/bin/env bash
 
-cat <<EOF > shell
-#!/usr/bin/env bash
-if [[ "\$1" == "" ]]; then
-  export COFFEA_IMAGE="coffeateam/coffea-dask-almalinux8:2024.5.0-py3.11"
-  # export COFFEA_IMAGE=/cvmfs/unpacked.cern.ch/registry.hub.docker.com/coffeateam/coffea-dask:latest
+if [[ "$1" == "zsh" ]]; then
+    cat <<EOF > shell
+#!/usr/bin/env zsh
+
+export INSTALL_LOC=/srv/
+export ZDOTDIR=\$INSTALL_LOC
+
+EOF
 else
-  export COFFEA_IMAGE=/cvmfs/unpacked.cern.ch/registry.hub.docker.com/\$1
+    cat <<EOF > shell
+#!/usr/bin/env bash
+
+export INSTALL_LOC=/srv/
+
+EOF
 fi
 
-export APPTAINER_BINDPATH=/cvmfs,/cvmfs/grid.cern.ch/etc/grid-security:/etc/grid-security,/eos,/etc/pki/ca-trust,/etc/tnsnames.ora,/run/user,/var/run/user
+if [[ "$2" == "lpc" ]]; then
+    cat <<EOF >> shell
+# Needed to setup cluster for LPC
+export CONDOR_CONFIG=\$INSTALL_LOC.condor_config
+grep -v '^include' /etc/condor/config.d/01_cmslpc_interactive > .condor_config
 
-APPTAINER_SHELL=\$(which bash) apptainer exec -B \${PWD}:/srv --pwd /srv \\
-  /cvmfs/unpacked.cern.ch/registry.hub.docker.com/\${COFFEA_IMAGE} \\
-  /bin/bash --rcfile /srv/.bashrc
+# Need all our bind addresses
+export APPTAINER_BINDPATH=/uscmst1b_scratch,/cvmfs,/cvmfs/grid.cern.ch/etc/grid-security:/etc/grid-security,/eos,/etc/pki/ca-trust,/run/user,/var/run/user,/eos
+
+EOF
+else
+    cat <<EOF >> shell
+# Need all our bind addresses
+export APPTAINER_BINDPATH=/cvmfs,/cvmfs/grid.cern.ch/etc/grid-security:/etc/grid-security,/eos,/etc/pki/ca-trust,/etc/tnsnames.ora,/run/user,/var/run/user,/eos
+
+EOF
+fi
+
+cat <<EOF >> shell
+voms-proxy-init -voms cms --valid 192:00 --out \$HOME/x509up_u\$UID
+
+if [[ "\$1" == "" ]]; then
+  export COFFEA_IMAGE="coffeateam/coffea-dask-almalinux8:2024.11.0-py3.12"
+  # export COFFEA_IMAGE=/cvmfs/unpacked.cern.ch/registry.hub.docker.com/coffeateam/coffea-dask:latest
+else
+  export COFFEA_IMAGE=\$1
+fi
+
+export FULL_IMAGE="/cvmfs/unpacked.cern.ch/registry.hub.docker.com/"\$COFFEA_IMAGE
 EOF
 
+if [[ "$1" == "zsh" ]]; then
+    cat <<EOF >> shell
+SINGULARITY_SHELL=\$(which zsh) singularity exec -B \${PWD}:/srv --pwd /srv \${FULL_IMAGE} $(which zsh)
+EOF
+else
+    cat <<EOF >> shell
+SINGULARITY_SHELL=\$(which bash) singularity exec -B \${PWD}:/srv --pwd /srv \${FULL_IMAGE} $(which bash) --rcfile /srv/.bashrc
+EOF
+fi
+
 cat <<EOF > .bashrc
-# LPCJQ_VERSION="0.3.1"
+LPCJQ_VERSION="0.4.1"
 install_env() {
   set -e
-  echo "Installing shallow virtual environment in \$PWD/.env..."
-  python -m venv --without-pip --system-site-packages .env
+  echo "Installing shallow virtual environment in \$INSTALL_LOC..env..."
+  python -m venv --without-pip --system-site-packages \$INSTALL_LOC..env
   unlink .env/lib64  # HTCondor can't transfer symlink to directory and it appears optional
   # work around issues copying CVMFS xattr when copying to tmpdir
   export TMPDIR=\$(mktemp -d -p .)
   rm -rf \$TMPDIR && unset TMPDIR
-  # .env/bin/python -m pip install --upgrade awkward dask_awkward coffea uproot
+  # \$INSTALL_LOC..env/bin/python -m pip install --upgrade awkward dask_awkward coffea uproot
   cd processing
-  ../.env/bin/python -m pip install -e .
+  \$INSTALL_LOC.env/bin/python -m pip install -e .
   cd ..
-  # .env/bin/python -m pip install -q git+https://github.com/CoffeaTeam/lpcjobqueue.git@v\${LPCJQ_VERSION}
+  \$INSTALL_LOC.env/bin/python -m pip install -q git+https://github.com/CoffeaTeam/lpcjobqueue.git@v\${LPCJQ_VERSION}
   echo "done."
 }
 
 install_kernel() {
   # work around issues copying CVMFS xattr when copying to tmpdir
   export TMPDIR=\$(mktemp -d -p .)
-  .env/bin/python -m ipykernel install --user --name monoz --display-name "monoz" --env PYTHONPATH $PYTHONPATH:$PWD --env PYTHONNOUSERSITE 1
+  \$INSTALL_LOC.env/bin/python -m ipykernel install --user --name monoz --display-name "monoz" --env PYTHONPATH $PYTHONPATH:$PWD --env PYTHONNOUSERSITE 1
   rm -rf \$TMPDIR && unset TMPDIR
 }
 
@@ -46,14 +88,14 @@ install_all() {
   install_kernel
 }
 
-export JUPYTER_PATH=/srv/.jupyter
-export JUPYTER_RUNTIME_DIR=/srv/.local/share/jupyter/runtime
-export JUPYTER_DATA_DIR=/srv/.local/share/jupyter
-export IPYTHONDIR=/srv/.ipython
+export JUPYTER_PATH=\$INSTALL_LOC.jupyter
+export JUPYTER_RUNTIME_DIR=\$INSTALL_LOC.local/share/jupyter/runtime
+export JUPYTER_DATA_DIR=\$INSTALL_LOC.local/share/jupyter
+export IPYTHONDIR=\$INSTALL_LOC.ipython
 unset GREP_OPTIONS
 
-[[ -d .env ]] || install_all
-source .env/bin/activate
+[[ -d \$INSTALL_LOC.env ]] || install_all
+source \$INSTALL_LOC.env/bin/activate
 alias pip="python -m pip"
 voms-proxy-init -voms cms -vomses /etc/grid-security/vomses/ --valid 192:00 --out \$HOME/x509up_u\$UID
 # pip show lpcjobqueue 2>/dev/null | grep -q "Version: \${LPCJQ_VERSION}" || pip install -q git+https://github.com/CoffeaTeam/lpcjobqueue.git@v\${LPCJQ_VERSION}
@@ -61,27 +103,27 @@ EOF
 
 cat <<EOF > .zshrc
 
-# LPCJQ_VERSION="0.3.1"
+LPCJQ_VERSION="0.4.1"
 install_env() {
   set -e
-  echo "Installing shallow virtual environment in \$PWD/.env..."
-  python -m venv --without-pip --system-site-packages .env
+  echo "Installing shallow virtual environment in \$INSTALL_LOC.env..."
+  python -m venv --without-pip --system-site-packages \$INSTALL_LOC.env
   unlink .env/lib64  # HTCondor can't transfer symlink to directory and it appears optional
   # work around issues copying CVMFS xattr when copying to tmpdir
   export TMPDIR=\$(mktemp -d -p .)
   rm -rf \$TMPDIR && unset TMPDIR
-  # .env/bin/python -m pip install --upgrade awkward dask_awkward coffea uproot
+  # \$INSTALL_LOC.env/bin/python -m pip install --upgrade awkward dask_awkward coffea uproot
   cd processing
-  ../.env/bin/python -m pip install -e .
+  \$INSTALL_LOC.env/bin/python -m pip install -e .
   cd ..
-  # .env/bin/python -m pip install -q git+https://github.com/CoffeaTeam/lpcjobqueue.git@v\${LPCJQ_VERSION}
+  \$INSTALL_LOC.env/bin/python -m pip install -q git+https://github.com/CoffeaTeam/lpcjobqueue.git@v\${LPCJQ_VERSION}
   echo "done."
 }
 
 install_kernel() {
   # work around issues copying CVMFS xattr when copying to tmpdir
   export TMPDIR=\$(mktemp -d -p .)
-  .env/bin/python -m ipykernel install --user --name monoz --display-name "monoz" --env PYTHONPATH $PYTHONPATH:$PWD --env PYTHONNOUSERSITE 1
+  \$INSTALL_LOC.env/bin/python -m ipykernel install --user --name monoz --display-name "monoz" --env PYTHONPATH $PYTHONPATH:$PWD --env PYTHONNOUSERSITE 1
   rm -rf \$TMPDIR && unset TMPDIR
 }
 
@@ -90,14 +132,14 @@ install_all() {
   install_kernel
 }
 
-export JUPYTER_PATH=/srv/.jupyter
-export JUPYTER_RUNTIME_DIR=/srv/.local/share/jupyter/runtime
-export JUPYTER_DATA_DIR=/srv/.local/share/jupyter
-export IPYTHONDIR=/srv/.ipython
+export JUPYTER_PATH=\$INSTALL_LOC.jupyter
+export JUPYTER_RUNTIME_DIR=\$INSTALL_LOC.local/share/jupyter/runtime
+export JUPYTER_DATA_DIR=\$INSTALL_LOC.local/share/jupyter
+export IPYTHONDIR=\$INSTALL_LOC.ipython
 unset GREP_OPTIONS
 
-[[ -d .env ]] || install_all
-source .env/bin/activate
+[[ -d \$INSTALL_LOC.env ]] || install_all
+source \$INSTALL_LOC.env/bin/activate
 alias pip="python -m pip"
 voms-proxy-init -voms cms -vomses /etc/grid-security/vomses/ --valid 192:00 --out \$HOME/x509up_u\$UID
 # pip show lpcjobqueue 2>/dev/null | grep -q "Version: \${LPCJQ_VERSION}" || pip install -q git+https://github.com/CoffeaTeam/lpcjobqueue.git@v\${LPCJQ_VERSION}
