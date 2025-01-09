@@ -19,14 +19,14 @@ An Introduction to Making Histograms from Trees
 Starting from the NTuples we have introduced, we will make histograms for our Control and Signal regions. We will do these for each file filled with NTuples. This means we will need to run our code over a large number of files. In order to make this easier we will submit the jobs on HT Condor and place the output in another directory. These files will only contain the histograms that we want to look at and will be much easier to work with.
 
 The file that will make these histograms can be seen here:
-`Producer <https://github.com/yhaddad/CMSDAS-MonoZ-Tutorial-2024/blob/main/processing/dasmonoz/monoz.py>`_.
+`Producer <https://github.com/FNALLPC/cmsdas-longex-MonoZ/blob/main/processing/dasmonoz/monoz.py>`_.
 
 
 **In general this code can be split into 3 main categories**
 
-1. The definition of selections for the different regions and their associated binning: `bins <https://github.com/yhaddad/CMSDAS-MonoZ-Tutorial-2024/blob/main/processing/dasmonoz/monoz.py#L97-L229>`_.
-2. The weights that will be applied in order to create the histograms. These include the Up and Down variations for our systematics: `weights <https://github.com/yhaddad/CMSDAS-MonoZ-Tutorial-2024/blob/main/processing/dasmonoz/monoz.py#L233-L253>`_.
-3. Filling the histograms that we have defined with the weight that we have defined: `Fill <https://github.com/yhaddad/CMSDAS-MonoZ-Tutorial-2024/blob/main/processing/dasmonoz/monoz.py#L44-L76>`_.
+1. The definition of selections for the different regions and their associated binning: `bins <https://github.com/FNALLPC/cmsdas-longex-MonoZ/blob/main/processing/dasmonoz/monoz.py#L97-L229>`_.
+2. The weights that will be applied in order to create the histograms. These include the Up and Down variations for our systematics: `weights <https://github.com/FNALLPC/cmsdas-longex-MonoZ/blob/main/processing/dasmonoz/monoz.py#L233-L253>`_.
+3. Filling the histograms that we have defined with the weight that we have defined: `Fill <https://github.com/FNALLPC/cmsdas-longex-MonoZ/blob/main/processing/dasmonoz/monoz.py#L44-L76>`_.
 
 
 For this school, you will want to play with the selections and add in the systematics that need to be added. You can run the code with the following:

@@ -172,12 +172,12 @@ Take some time to look through the datacards for the other channels (control reg
 Running your own datacards
 **************************
 
-The code to run the datacards can be see here `Datacard <https://github.com/yhaddad/CMSDAS-MonoZ-Tutorial-2024/blob/main/datacards/makecard-boost.py>`_.
+The code to run the datacards can be see here `Datacard <https://github.com/FNALLPC/cmsdas-longex-MonoZ/blob/main/datacards/makecard-boost.py>`_.
 
-In here the systematic variations are described here `systematic_variations <https://github.com/yhaddad/CMSDAS-MonoZ-Tutorial-2024/blob/main/datacards/makecard-boost.py#L187-L214>`_.
-and the rate params here `rate_params <https://github.com/yhaddad/CMSDAS-MonoZ-Tutorial-2024/blob/main/datacards/makecard-boost.py#L217-L231>`_.
+In here the systematic variations are described here `systematic_variations <https://github.com/FNALLPC/cmsdas-longex-MonoZ/blob/main/datacards/makecard-boost.py#L187-L214>`_.
+and the rate params here `rate_params <https://github.com/FNALLPC/cmsdas-longex-MonoZ/blob/main/datacards/makecard-boost.py#L217-L231>`_.
 
-This will run datacards for every file here `Input <https://github.com/yhaddad/CMSDAS-MonoZ-Tutorial-2024/blob/main/datacards/config/input_DAS_2016.yaml>`_.
+This will run datacards for every file here `Input <https://github.com/FNALLPC/cmsdas-longex-MonoZ/blob/main/datacards/config/input_DAS_2016.yaml>`_.
 
 In order to run this code you will need to tell it the region of interest. This can be seen in an example command below:
 Here we can just run the datacard for the SR and examine the datacard to see if it makes sense. You can examine other Dark Matter models by modifying the input_DAS_2016.yaml. 

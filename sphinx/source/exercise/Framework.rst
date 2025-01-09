@@ -24,8 +24,8 @@ Install framework:
 
 .. code-block:: sh
 
-   git clone git@github.com:yhaddad/CMSDAS-MonoZ-Tutorial-2024.git
-   cd CMSDAS-MonoZ-Tutorial-2024
+   git clone git@github.com:FNALLPC/cmsdas-longex-MonoZ.git
+   cd CMSDAS-MonoZ-Tutorial-2025
    sh bootstrap.sh
 
 
@@ -74,7 +74,10 @@ Install the Mono-Z analysis code (Commands above):
 
 NTuples for 2016 are stored the EOS space we can use:
 
+# CERN location
 /eos/user/c/cmsdas/long-exercises/MonoZ/
+# LPC location
+/eos/uscms/store/user/cmsdas/2025/long_exercises/long-ex-monoz/
 
 An example of how to look at a sample root file:
 
