@@ -1,9 +1,19 @@
 Introduction
 -------------
 
-Welcome to the mono-Z long excercise for CMSDAS 2024. This site will guide you through the exercise and give you examples on how to use the code. 
+Welcome to the mono-Z long excercise for CMSDAS. This site will guide you through the exercise and give you examples on how to use the code. 
 
-Facilitators
+Facilitators (LPC 2025)
+~~~~~~~~~~~~
+
+1. Daniel Fernando Guerrero Ibarra
+2. Nick Manganelli
+3. Rafey Hashmi
+4. Richa Sharma
+5. Tetiana Mazurets
+6. Matteo Cremonosi
+
+   Facilitators (CERN 2024)
 ~~~~~~~~~~~~
 
 1. Yacine Haddad
