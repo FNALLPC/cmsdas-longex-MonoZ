@@ -62,13 +62,13 @@ cat <<EOF > .bashrc
 LPCJQ_VERSION="0.4.1"
 install_env() {
   set -e
-  echo "Installing shallow virtual environment in \$INSTALL_LOC..env..."
-  python -m venv --without-pip --system-site-packages \$INSTALL_LOC..env
+  echo "Installing shallow virtual environment in \$INSTALL_LOC.env..."
+  python -m venv --without-pip --system-site-packages \$INSTALL_LOC.env
   unlink .env/lib64  # HTCondor can't transfer symlink to directory and it appears optional
   # work around issues copying CVMFS xattr when copying to tmpdir
   export TMPDIR=\$(mktemp -d -p .)
   rm -rf \$TMPDIR && unset TMPDIR
-  # \$INSTALL_LOC..env/bin/python -m pip install --upgrade awkward dask_awkward coffea uproot
+  # \$INSTALL_LOC.env/bin/python -m pip install --upgrade awkward dask_awkward coffea uproot
   cd processing
   \$INSTALL_LOC.env/bin/python -m pip install -e .
   cd ..
