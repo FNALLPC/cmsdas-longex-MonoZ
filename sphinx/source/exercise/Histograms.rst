@@ -32,14 +32,24 @@ The file that will make these histograms can be seen here:
 For this school, you will want to play with the selections and add in the systematics that need to be added. You can run the code with the following:
 
 .. code-block:: sh
-
+     # for CERN
      python3 run-process-local.py --datasets data/datasets-test.yaml
+     # for LPC
+     python3 run-process-local.py --datasets data/datasets-test-fnal.yaml
 
 This is a test yaml. Run this to make sure everything in the code works smoothly. If it does then you can move to running the full set of datasets. For this we might need morer cores. Let's try with the full 8 cores. 
 
 .. code-block:: sh
+     # for CERN
+     python3 run-process-local.py --datasets data/datasets-fulldata.yaml --ncores 4
+     # for LPC
+     python3 run-process-local.py --datasets data/datasets-fulldata-fnal.yaml --ncores 4
 
-     python3 run-process-local.py --datasets data/datasets-full.yaml --ncores 8
+This command will run over skims of all the data, but not the MC, which should process in a few minutes locally.
+
+.. code-block:: sh
+     # for LPC
+     python3 run-process-dask.py --datasets data/datasets-full-fnal.yaml
 
 This command will run over all of the files included in the datasets yaml. This includes both data and MC as well as signal. This output should be stored in a pickle which can be used directly to produce datacards as described in the next section of this guide. The rest of this section will give a description of the regions and systematics from this code.
 
