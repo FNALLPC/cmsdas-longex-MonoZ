@@ -26,7 +26,10 @@ Install framework:
 
    git clone git@github.com:FNALLPC/cmsdas-longex-MonoZ.git
    cd CMSDAS-MonoZ-Tutorial-2025
-   sh bootstrap.sh
+   # insert `zsh` or `bash` for your shell (check the output of `echo $SHELL`
+   # insert `lpc` or `cern` for your location
+   # sh bootstrap.sh <shell> <location>
+   sh bootstrap.sh bash lpc
 
 
 To start the singularity environment.
@@ -35,12 +38,14 @@ To start the singularity environment.
 
    ./shell
 
-If you want to start a jupyter session. Log into lxplus witht the following:
+If you want to start a jupyter session. Log into lxplus/cmslpc witht the following:
 
 .. code-block:: sh
 
    ssh -L localhost:8NNN:localhost:8NNN lxplus.cern.ch
-
+   # or...
+   ssh -L localhost:8NNN:localhost:8NNN cmslpc-el9.fnal.gov
+   
 Choose the port above (like 8099) and match it in the command below to start a jupyter session. You will need to copy the url from the following.
 
 .. code-block:: sh
@@ -74,16 +79,22 @@ Install the Mono-Z analysis code (Commands above):
 
 NTuples for 2016 are stored the EOS space we can use:
 
-# CERN location
+# CERN unskimmed trees location
 /eos/user/c/cmsdas/long-exercises/MonoZ/
-# LPC location
-/eos/uscms/store/user/cmsdas/2025/long_exercises/long-ex-monoz/
+# CERN skims location
+/eos/user/c/cmsdas/2024/long-ex-exo-monoz/datasets/
+# LPC unskimmed trees location
+/eos/uscms/store/user/cmsdas/2025/long_exercises/long-ex-monoz/fulldatasets/
+# LPC skims location
+/eos/uscms/store/user/cmsdas/2025/long_exercises/long-ex-monoz/datasets/
 
 An example of how to look at a sample root file:
 
 .. code-block:: sh
-
+   # CERN location
    root -l /eos/user/c/cmsdas/long-exercises/MonoZ/CMSDAS_NTuples/ZZTo2L2Nu_13TeV_powheg_pythia8_ext1/tree_0.root
+   # LPC location (note use of redirector!)
+   root -l root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/fulldatasets/ZZTo2L2Nu_13TeV_powheg_pythia8_ext1/tree_0.root
 
 This will open a root session where you can look at a sample file quickly in an interactive session:
 
