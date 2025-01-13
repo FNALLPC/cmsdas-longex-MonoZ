@@ -48,7 +48,7 @@ Let's run some impact plots:
       # CERN location
       cp -r /eos/user/c/cmsdas/long-exercises/MonoZ/datacards/cards-DMSimp_MonoZLL_NLO_Axial_1000_MXd-1 .
       # LPC location
-      cp -r /eos/uscms/store/user/cmsdas/2025/long_exercises/long-ex-monoz/datacards/cards-DMSimp_MonoZLL_NLO_Axial_1000_MXd-1 .
+      eoscp -r /eos/uscms/store/user/cmsdas/2025/long_exercises/long-ex-monoz/datacards/cards-DMSimp_MonoZLL_NLO_Axial_1000_MXd-1 .
       text2workspace.py cards-DMSimp_MonoZLL_NLO_Axial_1000_MXd-1/combined.dat -o workspace_TEST.root
       export PARAM="--rMin=-1 --rMax=4 --cminFallbackAlgo Minuit2,Migrad,0:0.05 --X-rtd MINIMIZER_analytic --X-rtd FAST_VERTICAL_MORPH"
       combineTool.py -M Impacts -d workspace_TEST.root -m 125 -n TEST --robustFit 1 --X-rtd FITTER_DYN_STEP --doInitialFit --allPars $PARAM;
