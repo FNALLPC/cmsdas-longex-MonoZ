@@ -36,4 +36,4 @@ Indices and tables
 CMSDAS
 ======
 
-Thank you for participating in the CMSDAS 2024. The mono-z tutorial code can be found here: `Github <https://github.com/yhaddad/CMSDAS-MonoZ-Tutorial-2024>`_
+Thank you for participating in the CMSDAS 2025. The mono-z tutorial code can be found here: `Github <https://github.com/FNALLPC/cmsdas-longex-MonoZ>`_
