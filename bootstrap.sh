@@ -5,7 +5,7 @@ if [[ "$1" == "zsh" ]]; then
 #!/usr/bin/env zsh
 autoload bashcompinit
 bashcompinit
-source SMQawa/call_host.zsh
+source cmsdas-longex-MonoZ/call_host.zsh
 
 export INSTALL_LOC_EXTERNAL=\$PWD
 export INSTALL_LOC=/srv/
@@ -15,7 +15,7 @@ EOF
 else
     cat <<EOF > shell
 #!/usr/bin/env bash
-source SMQawa/call_host.sh
+source cmsdas-longex-MonoZ/call_host.sh
 
 export INSTALL_LOC_EXTERNAL=\$PWD
 export INSTALL_LOC=/srv/
@@ -46,7 +46,7 @@ voms-proxy-init -voms cms --valid 192:00 --out \$HOME/x509up_u\$UID
 export X509_USER_PROXY=\$HOME/x509up_u\$UID
 
 if [[ "\$1" == "" ]]; then
-  export COFFEA_IMAGE="coffeateam/coffea-base-almalinux9:0.7.26-py3.10"
+  export COFFEA_IMAGE="coffeateam/coffea-dask-almalinux9:2025.10.2-py3.12"
 else
   export COFFEA_IMAGE="\$1"
 fi
@@ -66,13 +66,13 @@ fi
 
 if [[ "$1" == "zsh" ]]; then
     cat <<EOF > .zshrc
-if [ ! -d "SMQawa" ]; then
-  echo "SMQawa must already be cloned, e.g. via 'git clone -b <branch> git@github.com:<githubusername>/SMQawa.git'"
-  echo "the bootstrap.zsh script should be run from the parent folder of SMQawa to allow editable install of coffea and other packages alongside it."
+if [ ! -d "cmsdas-longex-MonoZ" ]; then
+  echo "cmsdas-longex-MonoZ must already be cloned, e.g. via 'git clone -b <branch> git@github.com:<githubusername>/cmsdas-longex-MonoZ.git'"
+  echo "the bootstrap.sh script should be run from the parent folder of cmsdas-longex-MonoZ to allow editable install of coffea and other packages alongside it."
   echo "clean the virtual env before re-attempting install."
 fi
 # Source the call_host script again inside the container
-source SMQawa/call_host.zsh
+source cmsdas-longex-MonoZ/call_host.zsh
 
 # To get dasgoclient
 export PATH=\$PATH:/cvmfs/cms.cern.ch/common
@@ -95,6 +95,8 @@ patch_venv_pths() {
     done
 }
 
+
+LPCJQ_VERSION="0.5.0"
 install_env() {
   print "INSTALLING ENV"
   # This will break if the repo isn't cloned first
@@ -104,19 +106,13 @@ install_env() {
   source \$INSTALL_LOC.env/bin/activate
   unlink \$INSTALL_LOC.env/lib64  # HTCondor can't transfer symlink to directory and it appears optional
   cd \${INSTALL_LOC}
-  if [ ! -d "coffea" ]; then
-    echo "Cloning coffea for editable install"
-    git clone -b smqawa-wz2ltaunu http://github.com/NJManganelli/coffea.git
-  fi
-  cd coffea
+  cd cmsdas-longex-MonoZ
   \$INSTALL_LOC.env/bin/python -m pip install -e .
   cd ..
-  cd SMQawa
-  \$INSTALL_LOC.env/bin/python -m pip install -e .
-  cd ..
-  \$INSTALL_LOC.env/bin/python -m pip install --upgrade 'boost_histogram >= 1.5.1'
+  \$INSTALL_LOC.env/bin/python -m pip install --upgrade 'boost_histogram >= 1.5.1' 'uproot-browser[test-data]'
+  \$INSTALL_LOC.env/bin/python -m pip install -q git+https://github.com/CoffeaTeam/lpcjobqueue.git@v\${LPCJQ_VERSION}
   if [ ! -d "DCTools" ]; then
-    echo "DCTools should be cloned into the directory adjacent to SMQawa to enable combine card building and postfit plotting"
+    echo "DCTools should be cloned into the directory adjacent to cmsdas-longex-MonoZ to enable combine card building and postfit plotting"
     echo "e.g. git clone -b main git@github.com:yhaddad/DCTools.git"
   fi
   echo "done."
@@ -153,13 +149,13 @@ EOF
     echo "Wrote zsh-shell and .zshrc to current directory. Run ./zsh-shell to start the apptainer shell"
 else
     cat <<EOF > .bashrc
-if [ ! -d "SMQawa" ]; then
-  echo "SMQawa must already be cloned, e.g. via 'git clone -b <branch> git@github.com:<githubusername>/SMQawa.git'"
-  echo "the bootstrap.zsh script should be run from the parent folder of SMQawa to allow editable install of coffea and other packages alongside it."
+if [ ! -d "cmsdas-longex-MonoZ" ]; then
+  echo "cmsdas-longex-MonoZ must already be cloned, e.g. via 'git clone -b <branch> git@github.com:<githubusername>/cmsdas-longex-MonoZ.git'"
+  echo "the bootstrap.sh script should be run from the parent folder of cmsdas-longex-MonoZ to allow editable install of coffea and other packages alongside it."
   echo "clean the virtual env before re-attempting install."
 fi
 # Source the call_host script again inside the container
-source SMQawa/call_host.sh
+source cmsdas-longex-MonoZ/call_host.sh
 
 # To get dasgoclient
 export PATH=\$PATH:/cvmfs/cms.cern.ch/common
@@ -180,6 +176,7 @@ patch_venv_pths() {
     done
 }
 
+LPCJQ_VERSION="0.5.0"
 install_env() {
   # This will break if the repo isn't cloned first
   set -e
@@ -188,19 +185,13 @@ install_env() {
   source \$INSTALL_LOC.env/bin/activate
   unlink \$INSTALL_LOC.env/lib64  # HTCondor can't transfer symlink to directory and it appears optional
   cd \${INSTALL_LOC}
-  if [ ! -d "coffea" ]; then
-    echo "Cloning coffea for editable install"
-    git clone -b smqawa-wz2ltaunu http://github.com/NJManganelli/coffea.git
-  fi
-  cd coffea
+  cd cmsdas-longex-MonoZ
   \$INSTALL_LOC.env/bin/python -m pip install -e .
   cd ..
-  cd SMQawa
-  \$INSTALL_LOC.env/bin/python -m pip install -e .
-  cd ..
-  \$INSTALL_LOC.env/bin/python -m pip install --upgrade 'boost_histogram >= 1.5.1'
+  \$INSTALL_LOC.env/bin/python -m pip install --upgrade 'boost_histogram >= 1.5.1' 'uproot-browser[test-data]'
+  \$INSTALL_LOC.env/bin/python -m pip install -q git+https://github.com/CoffeaTeam/lpcjobqueue.git@v\${LPCJQ_VERSION}
   if [ ! -d "DCTools" ]; then
-    echo "DCTools should be cloned into the directory adjacent to SMQawa to enable combine card building and postfit plotting"
+    echo "DCTools should be cloned into the directory adjacent to cmsdas-longex-MonoZ to enable combine card building and postfit plotting"
     echo "e.g. git clone -b main git@github.com:yhaddad/DCTools.git"
   fi
   echo "done."
