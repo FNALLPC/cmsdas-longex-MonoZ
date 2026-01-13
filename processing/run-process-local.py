@@ -47,7 +47,7 @@ def main():
     
     datasets_sumw = {k:v for k,v in datasets_sumw.items() if v["metadata"]["is_mc"]}
     datasets_simu = {k:v for k,v in datasets_simu.items() if v["metadata"]["is_mc"]}
-    datasets_data = {k:v for k,v in datasets_data.items() if "Run20" in k}
+    datasets_data = {k:v for k,v in datasets_data.items() if not v["metadata"]["is_mc"]}
 
     weight_syst_list = ["puWeight", "PDF", "MuonSF", "ElecronSF", "EWK", "nvtxWeight", "TriggerSFWeight", "btagEventWeight",
                         "QCDScale0w", "QCDScale1w", "QCDScale2w"]
@@ -104,6 +104,13 @@ def main():
             savemetrics=True,
         )
 
+        print("Processing Data Events ... ")
+        warnings.filterwarnings('ignore', category=UserWarning) # to silence duplicate branch warnings in Data
+        histograms_data, histograms_data_metrics = runner(
+            datasets_data,
+            processor_instance=MonoZ(weight_syst_list=weight_syst_list, shift_syst_list=shift_syst_list, virtual=True),
+        )
+
         print("Processing MC Events ... ")
         histograms_simu, histograms_simu_metrics = runner(
             datasets_simu,
@@ -122,12 +129,6 @@ def main():
                 "sumw": sumw[ds_name]
             }
 
-        print("Processing Data Events ... ")
-        warnings.filterwarnings('ignore', category=UserWarning) # to silence duplicate branch warnings in Data
-        histograms_data, histograms_data_metrics = runner(
-            datasets_data,
-            processor_instance=MonoZ(weight_syst_list=weight_syst_list, shift_syst_list=shift_syst_list, virtual=True),
-        )
         for ds_name in histograms_data.keys():
             bh_output[ds_name] = {
                 "hist": histograms_data[ds_name],
