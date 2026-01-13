@@ -1,223 +1,223 @@
-# Data2016:
+Data2016:
+  files:
+    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/DoubleEG_Run2016B_ver2-Nano1June2019_ver2-v1/aggtree_0.root : Events
+    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/DoubleEG_Run2016C-Nano1June2019-v1/aggtree_0.root : Events
+    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/DoubleEG_Run2016D-Nano1June2019-v1/aggtree_0.root : Events
+    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/DoubleEG_Run2016E-Nano1June2019-v1/aggtree_0.root : Events
+    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/DoubleEG_Run2016F-Nano1June2019-v1/aggtree_0.root : Events
+    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/DoubleEG_Run2016G-Nano1June2019-v1/aggtree_0.root : Events
+    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/DoubleEG_Run2016H-Nano1June2019-v1/aggtree_0.root : Events
+    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/DoubleMuon_Run2016B_ver2-Nano1June2019_ver2-v1/aggtree_0.root : Events
+    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/DoubleMuon_Run2016C-Nano1June2019-v1/aggtree_0.root : Events
+    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/DoubleMuon_Run2016D-Nano1June2019-v1/aggtree_0.root : Events
+    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/DoubleMuon_Run2016E-Nano1June2019-v1/aggtree_0.root : Events
+    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/DoubleMuon_Run2016F-Nano1June2019-v1/aggtree_0.root : Events
+    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/DoubleMuon_Run2016G-Nano1June2019-v1/aggtree_0.root : Events
+    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/DoubleMuon_Run2016H-Nano1June2019-v1/aggtree_0.root : Events
+    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/MuonEG_Run2016B_ver2-Nano1June2019_ver2-v1/aggtree_0.root : Events
+    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/MuonEG_Run2016C-Nano1June2019-v1/aggtree_0.root : Events
+    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/MuonEG_Run2016D-Nano1June2019-v1/aggtree_0.root : Events
+    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/MuonEG_Run2016E-Nano1June2019-v2/aggtree_0.root : Events
+    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/MuonEG_Run2016E-Nano1June2019-v3/aggtree_0.root : Events
+    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/MuonEG_Run2016F-Nano1June2019-v1/aggtree_0.root : Events
+    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/MuonEG_Run2016G-Nano1June2019-v1/aggtree_0.root : Events
+    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/MuonEG_Run2016H-Nano1June2019-v1/aggtree_0.root : Events
+    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/SingleElectron_Run2016B_ver2-Nano1June2019_ver2-v1/aggtree_0.root : Events
+    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/SingleElectron_Run2016C-Nano1June2019-v1/aggtree_0.root : Events
+    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/SingleElectron_Run2016D-Nano1June2019-v1/aggtree_0.root : Events
+    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/SingleElectron_Run2016E-Nano1June2019-v1/aggtree_0.root : Events
+    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/SingleElectron_Run2016F-Nano1June2019-v1/aggtree_0.root : Events
+    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/SingleElectron_Run2016G-Nano1June2019-v1/aggtree_0.root : Events
+    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/SingleElectron_Run2016H-Nano1June2019-v1/aggtree_0.root : Events
+    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/SingleMuon_Run2016B_ver2-Nano1June2019_ver2-v1/aggtree_0.root : Events
+    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/SingleMuon_Run2016C-Nano1June2019-v1/aggtree_0.root : Events
+    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/SingleMuon_Run2016D-Nano1June2019-v1/aggtree_0.root : Events
+    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/SingleMuon_Run2016E-Nano1June2019-v1/aggtree_0.root : Events
+    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/SingleMuon_Run2016F-Nano1June2019-v1/aggtree_0.root : Events
+    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/SingleMuon_Run2016G-Nano1June2019-v1/aggtree_0.root : Events
+    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/SingleMuon_Run2016H-Nano1June2019-v1/aggtree_0.root : Events
+  metadata:
+    is_mc: false
+# DoubleEG_Run2016B_ver2-Nano1June2019_ver2-v1:
 #   files:
 #     root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/DoubleEG_Run2016B_ver2-Nano1June2019_ver2-v1/aggtree_0.root : Events
+#   metadata:
+#     is_mc: false
+# DoubleEG_Run2016C-Nano1June2019-v1:
+#   files:
 #     root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/DoubleEG_Run2016C-Nano1June2019-v1/aggtree_0.root : Events
+#   metadata:
+#     is_mc: false
+# DoubleEG_Run2016D-Nano1June2019-v1:
+#   files:
 #     root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/DoubleEG_Run2016D-Nano1June2019-v1/aggtree_0.root : Events
+#   metadata:
+#     is_mc: false
+# DoubleEG_Run2016E-Nano1June2019-v1:
+#   files:
 #     root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/DoubleEG_Run2016E-Nano1June2019-v1/aggtree_0.root : Events
+#   metadata:
+#     is_mc: false
+# DoubleEG_Run2016F-Nano1June2019-v1:
+#   files:
 #     root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/DoubleEG_Run2016F-Nano1June2019-v1/aggtree_0.root : Events
+#   metadata:
+#     is_mc: false
+# DoubleEG_Run2016G-Nano1June2019-v1:
+#   files:
 #     root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/DoubleEG_Run2016G-Nano1June2019-v1/aggtree_0.root : Events
+#   metadata:
+#     is_mc: false
+# DoubleEG_Run2016H-Nano1June2019-v1:
+#   files:
 #     root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/DoubleEG_Run2016H-Nano1June2019-v1/aggtree_0.root : Events
+#   metadata:
+#     is_mc: false
+# DoubleMuon_Run2016B_ver2-Nano1June2019_ver2-v1:
+#   files:
 #     root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/DoubleMuon_Run2016B_ver2-Nano1June2019_ver2-v1/aggtree_0.root : Events
+#   metadata:
+#     is_mc: false
+# DoubleMuon_Run2016C-Nano1June2019-v1:
+#   files:
 #     root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/DoubleMuon_Run2016C-Nano1June2019-v1/aggtree_0.root : Events
+#   metadata:
+#     is_mc: false
+# DoubleMuon_Run2016D-Nano1June2019-v1:
+#   files:
 #     root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/DoubleMuon_Run2016D-Nano1June2019-v1/aggtree_0.root : Events
+#   metadata:
+#     is_mc: false
+# DoubleMuon_Run2016E-Nano1June2019-v1:
+#   files:
 #     root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/DoubleMuon_Run2016E-Nano1June2019-v1/aggtree_0.root : Events
+#   metadata:
+#     is_mc: false
+# DoubleMuon_Run2016F-Nano1June2019-v1:
+#   files:
 #     root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/DoubleMuon_Run2016F-Nano1June2019-v1/aggtree_0.root : Events
+#   metadata:
+#     is_mc: false
+# DoubleMuon_Run2016G-Nano1June2019-v1:
+#   files:
 #     root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/DoubleMuon_Run2016G-Nano1June2019-v1/aggtree_0.root : Events
+#   metadata:
+#     is_mc: false
+# DoubleMuon_Run2016H-Nano1June2019-v1:
+#   files:
 #     root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/DoubleMuon_Run2016H-Nano1June2019-v1/aggtree_0.root : Events
+#   metadata:
+#     is_mc: false
+# MuonEG_Run2016B_ver2-Nano1June2019_ver2-v1:
+#   files:
 #     root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/MuonEG_Run2016B_ver2-Nano1June2019_ver2-v1/aggtree_0.root : Events
+#   metadata:
+#     is_mc: false
+# MuonEG_Run2016C-Nano1June2019-v1:
+#   files:
 #     root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/MuonEG_Run2016C-Nano1June2019-v1/aggtree_0.root : Events
+#   metadata:
+#     is_mc: false
+# MuonEG_Run2016D-Nano1June2019-v1:
+#   files:
 #     root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/MuonEG_Run2016D-Nano1June2019-v1/aggtree_0.root : Events
+#   metadata:
+#     is_mc: false
+# MuonEG_Run2016E-Nano1June2019-v2:
+#   files:
 #     root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/MuonEG_Run2016E-Nano1June2019-v2/aggtree_0.root : Events
+#   metadata:
+#     is_mc: false
+# MuonEG_Run2016E-Nano1June2019-v3:
+#   files:
 #     root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/MuonEG_Run2016E-Nano1June2019-v3/aggtree_0.root : Events
+#   metadata:
+#     is_mc: false
+# MuonEG_Run2016F-Nano1June2019-v1:
+#   files:
 #     root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/MuonEG_Run2016F-Nano1June2019-v1/aggtree_0.root : Events
+#   metadata:
+#     is_mc: false
+# MuonEG_Run2016G-Nano1June2019-v1:
+#   files:
 #     root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/MuonEG_Run2016G-Nano1June2019-v1/aggtree_0.root : Events
+#   metadata:
+#     is_mc: false
+# MuonEG_Run2016H-Nano1June2019-v1:
+#   files:
 #     root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/MuonEG_Run2016H-Nano1June2019-v1/aggtree_0.root : Events
+#   metadata:
+#     is_mc: false
+# SingleElectron_Run2016B_ver2-Nano1June2019_ver2-v1:
+#   files:
 #     root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/SingleElectron_Run2016B_ver2-Nano1June2019_ver2-v1/aggtree_0.root : Events
+#   metadata:
+#     is_mc: false
+# SingleElectron_Run2016C-Nano1June2019-v1:
+#   files:
 #     root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/SingleElectron_Run2016C-Nano1June2019-v1/aggtree_0.root : Events
+#   metadata:
+#     is_mc: false
+# SingleElectron_Run2016D-Nano1June2019-v1:
+#   files:
 #     root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/SingleElectron_Run2016D-Nano1June2019-v1/aggtree_0.root : Events
+#   metadata:
+#     is_mc: false
+# SingleElectron_Run2016E-Nano1June2019-v1:
+#   files:
 #     root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/SingleElectron_Run2016E-Nano1June2019-v1/aggtree_0.root : Events
+#   metadata:
+#     is_mc: false
+# SingleElectron_Run2016F-Nano1June2019-v1:
+#   files:
 #     root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/SingleElectron_Run2016F-Nano1June2019-v1/aggtree_0.root : Events
+#   metadata:
+#     is_mc: false
+# SingleElectron_Run2016G-Nano1June2019-v1:
+#   files:
 #     root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/SingleElectron_Run2016G-Nano1June2019-v1/aggtree_0.root : Events
+#   metadata:
+#     is_mc: false
+# SingleElectron_Run2016H-Nano1June2019-v1:
+#   files:
 #     root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/SingleElectron_Run2016H-Nano1June2019-v1/aggtree_0.root : Events
+#   metadata:
+#     is_mc: false
+# SingleMuon_Run2016B_ver2-Nano1June2019_ver2-v1:
+#   files:
 #     root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/SingleMuon_Run2016B_ver2-Nano1June2019_ver2-v1/aggtree_0.root : Events
+#   metadata:
+#     is_mc: false
+# SingleMuon_Run2016C-Nano1June2019-v1:
+#   files:
 #     root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/SingleMuon_Run2016C-Nano1June2019-v1/aggtree_0.root : Events
+#   metadata:
+#     is_mc: false
+# SingleMuon_Run2016D-Nano1June2019-v1:
+#   files:
 #     root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/SingleMuon_Run2016D-Nano1June2019-v1/aggtree_0.root : Events
+#   metadata:
+#     is_mc: false
+# SingleMuon_Run2016E-Nano1June2019-v1:
+#   files:
 #     root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/SingleMuon_Run2016E-Nano1June2019-v1/aggtree_0.root : Events
+#   metadata:
+#     is_mc: false
+# SingleMuon_Run2016F-Nano1June2019-v1:
+#   files:
 #     root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/SingleMuon_Run2016F-Nano1June2019-v1/aggtree_0.root : Events
+#   metadata:
+#     is_mc: false
+# SingleMuon_Run2016G-Nano1June2019-v1:
+#   files:
 #     root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/SingleMuon_Run2016G-Nano1June2019-v1/aggtree_0.root : Events
+#   metadata:
+#     is_mc: false
+# SingleMuon_Run2016H-Nano1June2019-v1:
+#   files:
 #     root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/SingleMuon_Run2016H-Nano1June2019-v1/aggtree_0.root : Events
 #   metadata:
 #     is_mc: false
-DoubleEG_Run2016B_ver2-Nano1June2019_ver2-v1:
-  files:
-    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/DoubleEG_Run2016B_ver2-Nano1June2019_ver2-v1/aggtree_0.root : Events
-  metadata:
-    is_mc: false
-DoubleEG_Run2016C-Nano1June2019-v1:
-  files:
-    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/DoubleEG_Run2016C-Nano1June2019-v1/aggtree_0.root : Events
-  metadata:
-    is_mc: false
-DoubleEG_Run2016D-Nano1June2019-v1:
-  files:
-    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/DoubleEG_Run2016D-Nano1June2019-v1/aggtree_0.root : Events
-  metadata:
-    is_mc: false
-DoubleEG_Run2016E-Nano1June2019-v1:
-  files:
-    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/DoubleEG_Run2016E-Nano1June2019-v1/aggtree_0.root : Events
-  metadata:
-    is_mc: false
-DoubleEG_Run2016F-Nano1June2019-v1:
-  files:
-    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/DoubleEG_Run2016F-Nano1June2019-v1/aggtree_0.root : Events
-  metadata:
-    is_mc: false
-DoubleEG_Run2016G-Nano1June2019-v1:
-  files:
-    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/DoubleEG_Run2016G-Nano1June2019-v1/aggtree_0.root : Events
-  metadata:
-    is_mc: false
-DoubleEG_Run2016H-Nano1June2019-v1:
-  files:
-    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/DoubleEG_Run2016H-Nano1June2019-v1/aggtree_0.root : Events
-  metadata:
-    is_mc: false
-DoubleMuon_Run2016B_ver2-Nano1June2019_ver2-v1:
-  files:
-    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/DoubleMuon_Run2016B_ver2-Nano1June2019_ver2-v1/aggtree_0.root : Events
-  metadata:
-    is_mc: false
-DoubleMuon_Run2016C-Nano1June2019-v1:
-  files:
-    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/DoubleMuon_Run2016C-Nano1June2019-v1/aggtree_0.root : Events
-  metadata:
-    is_mc: false
-DoubleMuon_Run2016D-Nano1June2019-v1:
-  files:
-    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/DoubleMuon_Run2016D-Nano1June2019-v1/aggtree_0.root : Events
-  metadata:
-    is_mc: false
-DoubleMuon_Run2016E-Nano1June2019-v1:
-  files:
-    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/DoubleMuon_Run2016E-Nano1June2019-v1/aggtree_0.root : Events
-  metadata:
-    is_mc: false
-DoubleMuon_Run2016F-Nano1June2019-v1:
-  files:
-    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/DoubleMuon_Run2016F-Nano1June2019-v1/aggtree_0.root : Events
-  metadata:
-    is_mc: false
-DoubleMuon_Run2016G-Nano1June2019-v1:
-  files:
-    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/DoubleMuon_Run2016G-Nano1June2019-v1/aggtree_0.root : Events
-  metadata:
-    is_mc: false
-DoubleMuon_Run2016H-Nano1June2019-v1:
-  files:
-    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/DoubleMuon_Run2016H-Nano1June2019-v1/aggtree_0.root : Events
-  metadata:
-    is_mc: false
-MuonEG_Run2016B_ver2-Nano1June2019_ver2-v1:
-  files:
-    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/MuonEG_Run2016B_ver2-Nano1June2019_ver2-v1/aggtree_0.root : Events
-  metadata:
-    is_mc: false
-MuonEG_Run2016C-Nano1June2019-v1:
-  files:
-    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/MuonEG_Run2016C-Nano1June2019-v1/aggtree_0.root : Events
-  metadata:
-    is_mc: false
-MuonEG_Run2016D-Nano1June2019-v1:
-  files:
-    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/MuonEG_Run2016D-Nano1June2019-v1/aggtree_0.root : Events
-  metadata:
-    is_mc: false
-MuonEG_Run2016E-Nano1June2019-v2:
-  files:
-    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/MuonEG_Run2016E-Nano1June2019-v2/aggtree_0.root : Events
-  metadata:
-    is_mc: false
-MuonEG_Run2016E-Nano1June2019-v3:
-  files:
-    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/MuonEG_Run2016E-Nano1June2019-v3/aggtree_0.root : Events
-  metadata:
-    is_mc: false
-MuonEG_Run2016F-Nano1June2019-v1:
-  files:
-    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/MuonEG_Run2016F-Nano1June2019-v1/aggtree_0.root : Events
-  metadata:
-    is_mc: false
-MuonEG_Run2016G-Nano1June2019-v1:
-  files:
-    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/MuonEG_Run2016G-Nano1June2019-v1/aggtree_0.root : Events
-  metadata:
-    is_mc: false
-MuonEG_Run2016H-Nano1June2019-v1:
-  files:
-    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/MuonEG_Run2016H-Nano1June2019-v1/aggtree_0.root : Events
-  metadata:
-    is_mc: false
-SingleElectron_Run2016B_ver2-Nano1June2019_ver2-v1:
-  files:
-    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/SingleElectron_Run2016B_ver2-Nano1June2019_ver2-v1/aggtree_0.root : Events
-  metadata:
-    is_mc: false
-SingleElectron_Run2016C-Nano1June2019-v1:
-  files:
-    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/SingleElectron_Run2016C-Nano1June2019-v1/aggtree_0.root : Events
-  metadata:
-    is_mc: false
-SingleElectron_Run2016D-Nano1June2019-v1:
-  files:
-    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/SingleElectron_Run2016D-Nano1June2019-v1/aggtree_0.root : Events
-  metadata:
-    is_mc: false
-SingleElectron_Run2016E-Nano1June2019-v1:
-  files:
-    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/SingleElectron_Run2016E-Nano1June2019-v1/aggtree_0.root : Events
-  metadata:
-    is_mc: false
-SingleElectron_Run2016F-Nano1June2019-v1:
-  files:
-    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/SingleElectron_Run2016F-Nano1June2019-v1/aggtree_0.root : Events
-  metadata:
-    is_mc: false
-SingleElectron_Run2016G-Nano1June2019-v1:
-  files:
-    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/SingleElectron_Run2016G-Nano1June2019-v1/aggtree_0.root : Events
-  metadata:
-    is_mc: false
-SingleElectron_Run2016H-Nano1June2019-v1:
-  files:
-    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/SingleElectron_Run2016H-Nano1June2019-v1/aggtree_0.root : Events
-  metadata:
-    is_mc: false
-SingleMuon_Run2016B_ver2-Nano1June2019_ver2-v1:
-  files:
-    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/SingleMuon_Run2016B_ver2-Nano1June2019_ver2-v1/aggtree_0.root : Events
-  metadata:
-    is_mc: false
-SingleMuon_Run2016C-Nano1June2019-v1:
-  files:
-    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/SingleMuon_Run2016C-Nano1June2019-v1/aggtree_0.root : Events
-  metadata:
-    is_mc: false
-SingleMuon_Run2016D-Nano1June2019-v1:
-  files:
-    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/SingleMuon_Run2016D-Nano1June2019-v1/aggtree_0.root : Events
-  metadata:
-    is_mc: false
-SingleMuon_Run2016E-Nano1June2019-v1:
-  files:
-    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/SingleMuon_Run2016E-Nano1June2019-v1/aggtree_0.root : Events
-  metadata:
-    is_mc: false
-SingleMuon_Run2016F-Nano1June2019-v1:
-  files:
-    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/SingleMuon_Run2016F-Nano1June2019-v1/aggtree_0.root : Events
-  metadata:
-    is_mc: false
-SingleMuon_Run2016G-Nano1June2019-v1:
-  files:
-    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/SingleMuon_Run2016G-Nano1June2019-v1/aggtree_0.root : Events
-  metadata:
-    is_mc: false
-SingleMuon_Run2016H-Nano1June2019-v1:
-  files:
-    root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/SingleMuon_Run2016H-Nano1June2019-v1/aggtree_0.root : Events
-  metadata:
-    is_mc: false    
 DarkMatter_MonoZToLL_NLO_Vector_Mx-1_Mv-200_gDM1_gQ0p25_TuneCUETP8M1_13TeV-madgraph:
   files:
     root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/DarkMatter_MonoZToLL_NLO_Vector_Mx-1_Mv-200_gDM1_gQ0p25_TuneCUETP8M1_13TeV-madgraph/aggtree_0.root : Events
