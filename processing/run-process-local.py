@@ -4,12 +4,14 @@ from coffea.dataset_tools import (
     max_chunks,
     preprocess,
 )
+from coffea import processor
 
 import argparse
 import copy
 import dask
 import gzip, pickle, json
 import pprint
+import rich
 import warnings
 import yaml
 from matplotlib.pyplot import hist
@@ -20,11 +22,12 @@ from dasmonoz.sumw import EventSumw
 
 def main():
     parser = argparse.ArgumentParser("")
-    parser.add_argument('-jobs' , '--jobs'  , type=int, default=10    , help="")
-    parser.add_argument('-era'    , '--era' , type=str, default="2018", help="")
+    # parser.add_argument('-jobs' , '--jobs'  , type=int, default=10    , help="")
+    # parser.add_argument('-era'    , '--era' , type=str, default="2018", help="")
     parser.add_argument('--datasets', type=str, default='./data/datasets.yaml', help='input dataset yaml')
-    parser.add_argument('-max_chunks', '--max_chunks', type=int, default=100, help="limit number of chunks per-file to this number at most")
+    parser.add_argument('-maxchunks', '--maxchunks', type=int, default= -1, help="limit number of chunks per-file to this number at most, default '-1' to process all")
     parser.add_argument('-ncores', '--ncores', type=int, default=1, help="Number of cores to run dask on locally: 1 uses default scheduler, more creates a distributed LocalCluster")
+    parser.add_argument('--mode', type=str, default='virtual', help='mode for NanoEventsFactory in coffea, "virtual" default, "dask" as test option')
      
     options  = parser.parse_args()
     
@@ -43,104 +46,95 @@ def main():
         datasets_sumw[dataset]["files"] = {k: "Runs" for k in datasets[dataset]["files"]}
     
     datasets_sumw = {k:v for k,v in datasets_sumw.items() if v["metadata"]["is_mc"]}
-    #datasets_simu = {k:v for k,v in datasets_simu.items() if v["metadata"]["is_mc"]}
-    #datasets_data = {k:v for k,v in datasets_data.items() if "Run20" in k}
-
-    #print(datasets_data.keys())
-    #print(datasets_sumw.keys())
-    #print(datasets_simu.keys())
+    datasets_simu = {k:v for k,v in datasets_simu.items() if v["metadata"]["is_mc"]}
+    datasets_data = {k:v for k,v in datasets_data.items() if "Run20" in k}
 
     weight_syst_list = ["puWeight", "PDF", "MuonSF", "ElecronSF", "EWK", "nvtxWeight", "TriggerSFWeight", "btagEventWeight",
                         "QCDScale0w", "QCDScale1w", "QCDScale2w"]
     shift_syst_list = ["ElectronEn", "MuonEn", "jesTotal", "jer"]
-    
-    if options.ncores > 1:
-        warnings.filterwarnings("ignore")
-        client = Client(processes=True, threads_per_worker=1, n_workers=options.ncores, memory_limit='4GB')
-        print("Dashboard:", client.dashboard_link)
 
-    
-    print("Processing Sumw ... ")
-    for i, c in datasets_sumw.items():
-        print(i, len(c['files']))
-  
-    sumw_runnable, _ = preprocess(
-            datasets_sumw, 
-            align_clusters=False, 
-            step_size=100_000, 
-            files_per_batch=1,
-            skip_bad_files=True, 
-            save_form=True,
-    )
-          
-    sumw_compute = apply_to_fileset(
-            EventSumw(), max_chunks(sumw_runnable, options.max_chunks),
-            schemaclass=BaseSchema,
-    )
-    (sumw,) = dask.compute(sumw_compute)
-     
-    print("Processing MC Events ... ")
-    #for i, c in datasets_simu.items():
-    #    print(i, len(c['files']))
-  
-    # dataset_simu_runnable, _ = preprocess(
-    #     datasets_simu, 
-    #     align_clusters=False, 
-    #     step_size=100_000, 
-    #     files_per_batch=1,
-    #     skip_bad_files=True,
-    #     save_form=False,
-    # )
-
-    # event_simu_compute = apply_to_fileset(
-    #     MonoZ(weight_syst_list=weight_syst_list, shift_syst_list=shift_syst_list),
-    #     max_chunks(dataset_simu_runnable, options.max_chunks),
-    #     schemaclass=BaseSchema,
-    #     #uproot_options={"allow_read_errors_with_report": (OSError,IndexError)}
-    # )
-    # (histograms_simu,) = dask.compute(event_simu_compute)
-    # 
-    # print(histograms_simu)
-    # 
     bh_output = {}
-    # for key, content in histograms_simu.items():
-    #     bh_output[key] = {
-    #         "hist": content,
-    #         "sumw": sumw[key],
-    #     }
 
-    
-    print("Processing Data Events ... ")
-    for i, c in datasets_simu.items():
-        print(i, len(c['files']))
-        dataset_temp = {i: c}
-        dataset_data_runnable, _ = preprocess(
-            dataset_temp, 
-            align_clusters=False, 
-            step_size=100_000, 
-            files_per_batch=1,
-            skip_bad_files=True,
-            save_form=True,
+    if options.mode == "dask":
+        if options.ncores > 1:
+            warnings.filterwarnings("ignore")
+            client = Client(processes=True, threads_per_worker=1, n_workers=options.ncores, memory_limit='4GB')
+            print("Dashboard:", client.dashboard_link)
+
+        print("Processing MC Events ... ")
+        for ds_name, ds_values in datasets_simu.items():
+            print(i, len(c['files']))
+            dataset_temp = {i: ds_values}
+            dataset_mc_runnable, _ = preprocess(
+                dataset_temp,
+                align_clusters=False,
+                step_size=100_000,
+                files_per_batch=1,
+                skip_bad_files=True,
+                save_form=True,
+            )
+
+            event_mc_compute = apply_to_fileset(
+                MonoZ(weight_syst_list=weight_syst_list, shift_syst_list=shift_syst_list),
+                max_chunks(dataset_mc_runnable, options.maxchunks) if options.maxchunks > 0 else None,
+                schemaclass=BaseSchema,
+            )
+
+            (histograms_simu,) = dask.compute(event_mc_compute)
+
+            sumw_value = -1.0
+            if ds_values['metadata']["is_mc"]:
+                sumw_value= sumw[ds_name]
+            bh_output[ds_name] = {
+                "hist": histograms_simu[ds_name],
+                "sumw": sumw_value
+            }
+
+    elif options.mode == "virtual":
+        if options.ncores > 1:
+            exc = processor.FuturesExecutor(compression=None)
+        else:
+            exc = processor.IterativeExecutor(compression=None)
+
+        runner = processor.Runner(
+            executor=exc,
+            schema=BaseSchema,
+            chunksize=100_000,
+            maxchunks=options.maxchunks if options.maxchunks > 0 else None,
+            savemetrics=True,
         )
 
-        event_data_compute = apply_to_fileset(
-            MonoZ(weight_syst_list=weight_syst_list, shift_syst_list=shift_syst_list),
-            max_chunks(dataset_data_runnable, 300),
-            schemaclass=BaseSchema,
+        print("Processing MC Events ... ")
+        histograms_simu, histograms_simu_metrics = runner(
+            datasets_simu,
+            processor_instance=MonoZ(weight_syst_list=weight_syst_list, shift_syst_list=shift_syst_list, virtual=True),
         )
 
-        (out_hist,) = dask.compute(event_data_compute)
-        print(out_hist.keys())
+        print("Processing Sumw ... ")
+        sumw, sumw_metrics = runner(
+            datasets_sumw,
+            processor_instance=EventSumw(virtual=True),
+        )
 
-        sumw_value = -1.0 
-        if c['metadata']["is_mc"]:
-            sumw_value= sumw[i]
-        bh_output[i] = {
-            "hist": out_hist[i],
-            "sumw": sumw_value
-        }
+        for ds_name in histograms_simu.keys():
+            bh_output[ds_name] = {
+                "hist": histograms_simu[ds_name],
+                "sumw": sumw[ds_name]
+            }
 
-    print(bh_output)
+        print("Processing Data Events ... ")
+        warnings.filterwarnings('ignore', category=UserWarning) # to silence duplicate branch warnings in Data
+        histograms_data, histograms_data_metrics = runner(
+            datasets_data,
+            processor_instance=MonoZ(weight_syst_list=weight_syst_list, shift_syst_list=shift_syst_list, virtual=True),
+        )
+        for ds_name in histograms_data.keys():
+            bh_output[ds_name] = {
+                "hist": histograms_data[ds_name],
+                "sumw": -1.0
+            }
+
+    # rich.print(bh_output)
 
     with gzip.open("histograms.pkl.gz", "wb") as f:
         pickle.dump(bh_output, f)
