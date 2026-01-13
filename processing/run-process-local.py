@@ -26,6 +26,7 @@ def main():
     # parser.add_argument('-era'    , '--era' , type=str, default="2018", help="")
     parser.add_argument('--datasets', type=str, default='./data/datasets.yaml', help='input dataset yaml')
     parser.add_argument('-maxchunks', '--maxchunks', type=int, default= -1, help="limit number of chunks per-file to this number at most, default '-1' to process all")
+    parser.add_argument('-maxmc', '--maxmc', type=int, default= -1, help="limit number of Monte Carlo datasets processed, default '-1' to process all")
     parser.add_argument('-ncores', '--ncores', type=int, default=1, help="Number of cores to run dask on locally: 1 uses default scheduler, more creates a distributed LocalCluster")
     parser.add_argument('--mode', type=str, default='virtual', help='mode for NanoEventsFactory in coffea, "virtual" default, "dask" as test option')
      
@@ -47,6 +48,8 @@ def main():
     
     datasets_sumw = {k:v for k,v in datasets_sumw.items() if v["metadata"]["is_mc"]}
     datasets_simu = {k:v for k,v in datasets_simu.items() if v["metadata"]["is_mc"]}
+    if options.maxmc > 0:
+        datasets_simu = {k:v for k,v in datasets_simu.items() if k in list(datasets_simu.keys())[:options.maxmc]}
     datasets_data = {k:v for k,v in datasets_data.items() if not v["metadata"]["is_mc"]}
 
     weight_syst_list = ["puWeight", "PDF", "MuonSF", "ElecronSF", "EWK", "nvtxWeight", "TriggerSFWeight", "btagEventWeight",
@@ -96,29 +99,35 @@ def main():
         else:
             exc = processor.IterativeExecutor(compression=None)
 
-        runner = processor.Runner(
+        mc_runner = processor.Runner(
             executor=exc,
             schema=BaseSchema,
             chunksize=100_000,
             maxchunks=options.maxchunks if options.maxchunks > 0 else None,
             savemetrics=True,
         )
-
+        data_runner = processor.Runner(
+            executor=exc,
+            schema=BaseSchema,
+            chunksize=100_000,
+            maxchunks=None, # don't limit data processing, it's quick and we can't renormalize trivially
+            savemetrics=True,
+        )
         print("Processing Data Events ... ")
         warnings.filterwarnings('ignore', category=UserWarning) # to silence duplicate branch warnings in Data
-        histograms_data, histograms_data_metrics = runner(
+        histograms_data, histograms_data_metrics = data_runner(
             datasets_data,
             processor_instance=MonoZ(weight_syst_list=weight_syst_list, shift_syst_list=shift_syst_list, virtual=True),
         )
 
         print("Processing MC Events ... ")
-        histograms_simu, histograms_simu_metrics = runner(
+        histograms_simu, histograms_simu_metrics = mc_runner(
             datasets_simu,
             processor_instance=MonoZ(weight_syst_list=weight_syst_list, shift_syst_list=shift_syst_list, virtual=True),
         )
 
         print("Processing Sumw ... ")
-        sumw, sumw_metrics = runner(
+        sumw, sumw_metrics = mc_runner(
             datasets_sumw,
             processor_instance=EventSumw(virtual=True),
         )
@@ -134,8 +143,6 @@ def main():
                 "hist": histograms_data[ds_name],
                 "sumw": -1.0
             }
-
-    # rich.print(bh_output)
 
     with gzip.open("histograms.pkl.gz", "wb") as f:
         pickle.dump(bh_output, f)
