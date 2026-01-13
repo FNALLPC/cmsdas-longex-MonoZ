@@ -20,19 +20,31 @@ class BaseProducer(ProcessorABC):
     histograms = NotImplemented
     selection = NotImplemented
 
-    def __init__(self, do_syst=True, weight_syst_list: list = [], shift_syst_list: list = []):
+    def __init__(self, do_syst=True, weight_syst_list: list = [], shift_syst_list: list = [], virtual=True):
         self.do_syst = do_syst
         self.weight_syst_list = weight_syst_list
         self.vshift_syst_list = shift_syst_list
-        
-        self._accumulator = {
-            name: hda.hist.Hist(
-                hist.axis.StrCategory([], name="channel"   , growth=True),
-                hist.axis.StrCategory([], name="systematic", growth=True), 
-                hist.axis.Variable(h["axis"]["bins"], name=h["axis"]["label"]),
-                hist.storage.Weight()
-            ) for name, h in list(self.histograms.items())
-        }
+        self.virtual = virtual
+        if self.virtual:
+            # regular histograms for "virtual" mode arrays
+            self._accumulator = {
+                name: hist.Hist(
+                    hist.axis.StrCategory([], name="channel"   , growth=True),
+                    hist.axis.StrCategory([], name="systematic", growth=True), 
+                    hist.axis.Variable(h["axis"]["bins"], name=h["axis"]["label"]),
+                    hist.storage.Weight()
+                ) for name, h in list(self.histograms.items())
+            }
+        else:
+            # dask histogram for dask-awkward arrays in "dask" mode
+            self._accumulator = {
+                name: hda.hist.Hist(
+                    hist.axis.StrCategory([], name="channel"   , growth=True),
+                    hist.axis.StrCategory([], name="systematic", growth=True), 
+                    hist.axis.Variable(h["axis"]["bins"], name=h["axis"]["label"]),
+                    hist.storage.Weight()
+                ) for name, h in list(self.histograms.items())
+            }
 
     def process(self, event: dask_awkward.lib.core.Array):
         dataset_name = event.metadata['dataset']
@@ -74,7 +86,9 @@ class BaseProducer(ProcessorABC):
                             histo["axis"]["label"]: event[histo['target']][selec],
                             "weight": weights.weight()[selec]
                         })
-        return output
+        # adjust return type to include dataset name if using older Runner interface with virtual arrays, and just return sumw if using dask-awkward backend
+        assert output is not None
+        return {dataset_name: output} if self.virtual else output
 
         
 
@@ -230,7 +244,7 @@ class MonoZ(BaseProducer):
 
     def weighting(self, event: dask_awkward.lib.core.Array):
 
-        weights = Weights(None, storeIndividual=True)
+        weights = Weights(ak.num(event, axis=0) if self.virtual else None, storeIndividual=True)
         # For data we want a nominal weight of 1, and we do an early return from this function
         if not event.metadata["is_mc"]:
             weights.add("data", ak.ones_like(event.ngood_jets))
