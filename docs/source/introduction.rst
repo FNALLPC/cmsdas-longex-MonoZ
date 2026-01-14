@@ -1,9 +1,20 @@
 Introduction
 -------------
 
-Welcome to the mono-Z long excercise for CMSDAS 2025. This site will guide you through the exercise and give you examples on how to use the code. 
+Welcome to the mono-Z long excercise for CMSDAS 2026. This site will guide you through the exercise and give you examples on how to use the code. 
 
-Facilitators
+LPC DAS 2026 Facilitators
+~~~~~~~~~~~~
+
+1. Nick Manganelli
+2. Daniel Fernando Guerrero Ibarra
+3. Lawrence Lee
+4. Sweta Baradia
+5. Itzelli Salazar Segovia
+6. Erdem Yigit Ertorer
+
+
+IIT Hyderabad 2025 Facilitators
 ~~~~~~~~~~~~
 
 1. Bhawna Gomber
