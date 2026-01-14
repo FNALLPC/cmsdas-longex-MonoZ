@@ -92,7 +92,7 @@ class BaseProducer(ProcessorABC):
 
         
 
-
+    # This function uses the 'excut' to effectively make N-1 plots of variables, removing cuts defining a region that depend on a variable you want to histogram
     def evaluate_selection(self, event:dask_awkward.lib.core.Array, excut: str, cat: str, syst_shift: str='', direction: str=''):
         if syst_shift:
             syst_shift = '' if syst_shift in self.weight_syst_list else syst_shift
@@ -109,6 +109,7 @@ class BaseProducer(ProcessorABC):
 
 class MonoZ(BaseProducer):
     histograms = {
+        # met_pt histograms, broken into 3 sets of regions with different target observable and binning
         'h1_measMET': {
             'target': 'met_pt',
             'name'  : 'measMET',
@@ -146,7 +147,11 @@ class MonoZ(BaseProducer):
                 'bins': [50, 100, 125, 150, 175, 200, 250, 300, 350, 400, 500, 600, 1000]
             }
         }
+        # EXERCISE TASK 4: Add additional histograms for other distributions. hint: you can aggregate more categories if they have the same target variable and binning
+
+        # EXERCISE TASK 6: Plot your histograms...
     }
+    # EXERCISE TASK 1: Note the 'event.XXXX' variable cuts. Use ROOT or NanoEventsFactory to open a file and explore what other variables are added over regular NanoAOD
     selection = {
         "signal": [
             "event.Z_pt{sys}        >  60",
@@ -198,18 +203,19 @@ class MonoZ(BaseProducer):
             "abs(event.delta_phi_j_met{sys}) > 0.5",
             "event.delta_R_ll{sys}           < 1.8"
         ],
+        # EXERCISE TASK 2: Define catSignal-1jet region
         "catSignal-1jet": [
             "(event.lep_category{sys} == 1) | (event.lep_category{sys} == 3)",
-            "event.ngood_jets{sys} == 1",
-            "event.Z_pt{sys}        >  60",
-            "abs(event.Z_mass{sys} - 91.1876) < 15",
-            "event.ngood_bjets{sys} ==  0",
-            "event.nhad_taus{sys}   ==  0",
-            "event.met_pt{sys}      >  50",
-            "abs(event.delta_phi_ZMet{sys} ) > 2.6",
-            "abs(1 - event.sca_balance{sys}) < 0.4",
-            "abs(event.delta_phi_j_met{sys}) > 0.5",
-            "event.delta_R_ll{sys}           < 1.8"
+            # ...
+            # ...
+            # ...
+            # ...
+            # ...
+            # ...
+            # ...
+            # ...
+            # ...
+            # ...
         ],
         "catDY": [
             "(event.lep_category{sys} == 1) | (event.lep_category{sys} == 3)",
@@ -232,12 +238,13 @@ class MonoZ(BaseProducer):
             "event.ngood_bjets{sys} ==  0",
             "event.met_pt{sys}      >  30"
         ],
+        # EXERCISE TASK 3: add a cut to define the TOP region
         "catTOP": [
             "event.lep_category{sys} == 2",
             "event.Z_pt{sys}        >  60" ,
             "abs(event.Z_mass{sys} - 91.1876) < 15",
             "event.ngood_jets{sys}  >   2" ,
-            "event.ngood_bjets{sys} >=  1" ,
+            # ...
             "event.met_pt{sys}      >  80"
         ]
     }
@@ -263,6 +270,7 @@ class MonoZ(BaseProducer):
         weights.add("QCDScale1", ak.ones_like(event.QCDScale0wUp), event.QCDScale1wUp, event.QCDScale1wDown)
         weights.add("QCDScale2", ak.ones_like(event.QCDScale0wUp), event.QCDScale2wUp, event.QCDScale2wDown)
 
+        # EXERCISE TASK 5: add more systematics
         # Insert here the complete list of weight-based systematics: 
         # missing are --> MuonSF, ElectronSF, PrefireWeight, nvtxWeight, TriggerSFWeight, btagEventWeight
 
