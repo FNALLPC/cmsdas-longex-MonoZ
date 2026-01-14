@@ -24,17 +24,37 @@ Install framework:
 
 .. code-block:: sh
 
-   git clone git@github.com:yhaddad/CMSDAS-MonoZ-Tutorial-2024.git
-   cd CMSDAS-MonoZ-Tutorial-2024
-   sh bootstrap.sh
+   # LXPLUS
+   mkdir <working_directory>
+   cd <working_directory>
+   git clone git@github.com:FNALLPC/cmsdas-longex-MonoZ.git
+   sh cmsdas-longex-MonoZ/bootstrap.sh bash cern
+   # or for zsh shell
+   sh cmsdas-longex-MonoZ/bootstrap.sh zsh cern
+
+   # LPC
+   mkdir ~/nobackup/<working_directory>
+   cd ~/nobackup/<working_directory>
+   git clone git@github.com:FNALLPC/cmsdas-longex-MonoZ.git
+   sh cmsdas-longex-MonoZ/bootstrap.sh bash lpc
+   # or for zsh shell
+   sh cmsdas-longex-MonoZ/bootstrap.sh zsh lpc
 
 
 To start the singularity environment.
 
 .. code-block:: sh
 
-   ./shell
+   # LXPLUS
+   cd <working_directory>
+   # LPC
+   cd ~/nobackup/<working_directory>
 
+   # BASH
+   ./bash-shell
+   # ZSH
+   ./zsh-shell
+   
 If you want to start a jupyter session. Log into lxplus witht the following:
 
 .. code-block:: sh
@@ -45,6 +65,13 @@ Choose the port above (like 8099) and match it in the command below to start a j
 
 .. code-block:: sh
 
+   # LXPLUS
+   ssh -L localhost:8NNN:localhost:8NNN lxplus.cern.ch
+   
+   # LPC
+   ssh -L localhost:8NNN:localhost:8NNN cmslpc-el9.fnal.gov
+
+   # Finally
    jupyter lab --no-browser --port 8NNN
 
 

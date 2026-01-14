@@ -19,21 +19,25 @@ An Introduction to Making Histograms from Trees
 Starting from the NTuples we have introduced, we will make histograms for our Control and Signal regions. We will do these for each file filled with NTuples. This means we will need to run our code over a large number of files. In order to make this easier we will submit the jobs on HT Condor and place the output in another directory. These files will only contain the histograms that we want to look at and will be much easier to work with.
 
 The file that will make these histograms can be seen here:
-`Producer <https://github.com/yhaddad/CMSDAS-MonoZ-Tutorial-2024/blob/main/processing/dasmonoz/monoz.py>`_.
+`Producer <https://github.com/FNALLPC/cmsdas-longex-MonoZ/blob/daslpc2026/processing/dasmonoz/monoz.py>`_.
 
 
 **In general this code can be split into 3 main categories**
 
-1. The definition of selections for the different regions and their associated binning: `bins <https://github.com/yhaddad/CMSDAS-MonoZ-Tutorial-2024/blob/main/processing/dasmonoz/monoz.py#L97-L229>`_.
-2. The weights that will be applied in order to create the histograms. These include the Up and Down variations for our systematics: `weights <https://github.com/yhaddad/CMSDAS-MonoZ-Tutorial-2024/blob/main/processing/dasmonoz/monoz.py#L233-L253>`_.
-3. Filling the histograms that we have defined with the weight that we have defined: `Fill <https://github.com/yhaddad/CMSDAS-MonoZ-Tutorial-2024/blob/main/processing/dasmonoz/monoz.py#L44-L76>`_.
+1. The definition of selections for the different regions and their associated binning: `bins <https://github.com/FNALLPC/cmsdas-longex-MonoZ/blob/daslpc2026/processing/dasmonoz/monoz.py#L111-L250>`_.
+2. The weights that will be applied in order to create the histograms. These include the Up and Down variations for our systematics: `weights <https://github.com/FNALLPC/cmsdas-longex-MonoZ/blob/daslpc2026/processing/dasmonoz/monoz.py#L254-L275>`_.
+3. Filling the histograms that we have defined with the weight that we have defined: `Fill <https://github.com/FNALLPC/cmsdas-longex-MonoZ/blob/daslpc2026/processing/dasmonoz/monoz.py#L56-L91>`_.
 
 
 For this school, you will want to play with the selections and add in the systematics that need to be added. You can run the code with the following:
 
 .. code-block:: sh
 
+     # LXPLUS
      python3 run-process-local.py --datasets data/datasets-test.yaml
+
+     # LPC
+     python3 run-process-local.py --datasets data/datasets-test-fnal.yaml
 
 This is a test yaml. Run this to make sure everything in the code works smoothly. If it does then you can move to running the full set of datasets. For this we might need morer cores. Let's try with the full 8 cores. 
 
@@ -42,6 +46,12 @@ This is a test yaml. Run this to make sure everything in the code works smoothly
      python3 run-process-local.py --datasets data/datasets-full.yaml --ncores 8
 
 This command will run over all of the files included in the datasets yaml. This includes both data and MC as well as signal. This output should be stored in a pickle which can be used directly to produce datacards as described in the next section of this guide. The rest of this section will give a description of the regions and systematics from this code.
+
+.. code-block:: sh
+
+     python3 run-process-local.py --datasets data/datasets-fulldata-fnal.yaml --ncores 8 --maxmc 3 --maxchunks 2
+
+This version of the command will run over all the MC and data at the LPC, but the options for maxmc will reduce the total MC datasets processed, and the maxchunks will limit the number of 100,000 event chunks processed per dataset. Use these options to more flexibly test code updates.
 
 Control Regions in the MonoZ analysis
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
