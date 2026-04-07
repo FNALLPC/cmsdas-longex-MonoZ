@@ -27,7 +27,8 @@ Install framework:
    # LXPLUS
    mkdir <working_directory>
    cd <working_directory>
-   git clone git@github.com:FNALLPC/cmsdas-longex-MonoZ.git
+   git clone -b dasmonoz main git@github.com:NJManganelli/DCTools.git
+   git clone -b daslpc2026 git@github.com:FNALLPC/cmsdas-longex-MonoZ.git
    sh cmsdas-longex-MonoZ/bootstrap.sh bash cern
    # or for zsh shell
    sh cmsdas-longex-MonoZ/bootstrap.sh zsh cern
@@ -74,6 +75,7 @@ Choose the port above (like 8099) and match it in the command below to start a j
    # Finally
    jupyter lab --no-browser --port 8NNN
 
+Ensure you select "smqawa" as the kernel in the top right to be able to import dasmonoz or dctools directly!
 
 List of backgrounds
 ~~~~~~~~~~~~~~~~~~~
