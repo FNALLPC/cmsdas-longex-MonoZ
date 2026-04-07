@@ -25,13 +25,9 @@ To set-up combine for this exercise, log into lxplus and setup a directory for t
     cmsrel CMSSW_14_1_0_pre4
     cd CMSSW_14_1_0_pre4/src
     cmsenv
-    git clone https://github.com/cms-analysis/HiggsAnalysis-CombinedLimit.git HiggsAnalysis/CombinedLimit
-    cd HiggsAnalysis/CombinedLimit
+    git -c advice.detachedHead=false clone --depth 1 --branch v10.5.1 https://github.com/cms-analysis/HiggsAnalysis-CombinedLimit.git HiggsAnalysis/CombinedLimit
 
-    cd $CMSSW_BASE/src/HiggsAnalysis/CombinedLimit
-    git fetch origin
-    git checkout v10.0.1
-    cd $CMSSW_BASE/src
+    cd HiggsAnalysis/CombinedLimit
     scramv1 b clean; scramv1 b # always make a clean build
 
 
@@ -76,7 +72,14 @@ You can create the diagnostics file using the following command:
 
       combine -M FitDiagnostics workspace_TEST.root -n 'MonoZ' --plots --saveNorm --saveShapes --saveWithUncertainties --saveOverall
 
-This should output a ROOT file named after 'MonoZ' in the command above. Now we can look at this ROOT file and see different normalized distributions. Go ahead and explore it a little bit. What processes are available in the file? What about data? We will use this diagnostic file to make some plots in the next section but you should make yourself comfortable with it now.
+This should output a ROOT file named after 'MonoZ' in the command above and several .png files containing plots. Now we can look at this ROOT file and the .png plots and see different normalized distributions. Go ahead and explore them a little bit. What processes are available in the file? What about data? We will use this diagnostic file to make some plots in the next section but you should make yourself comfortable with it now. Compare the `*prefit.png` and the `*fit_s.png` for the same region. What diferences can you see? What happens to the data? and to the Sig+Bkg estimation? 
+
+Note: if you see the following ERROR:
+.. code-block:: html
+
+    ERROR: component selection expression 'shapeSig*' does not select any components of p.d.f.
+
+Check for which region is the error and look in the corresponding datacard for the Signal yeld on that region. This is expected if your signal yield is 0. 
 
 Running the Limits
 ******************
