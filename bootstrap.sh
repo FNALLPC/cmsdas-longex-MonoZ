@@ -88,13 +88,6 @@ fi
 
 test -e \${ZDOTDIR}/.iterm2_shell_integration.zsh && source \${ZDOTDIR}/.iterm2_shell_integration.zsh
 
-patch_venv_pths() {
-    echo Patching VIRTUAL_ENV .pth files
-    for x in \$(find \$VIRTUAL_ENV -name "*.pth"); do
-        echo \${x} && sed -i "s@\$INSTALL_LOC@\$INSTALL_LOC_EXTERNAL/@g" \${x};
-    done
-}
-
 
 LPCJQ_VERSION="0.5.0"
 install_env() {
@@ -109,12 +102,15 @@ install_env() {
   cd cmsdas-longex-MonoZ
   \$INSTALL_LOC.env/bin/python -m pip install -e .
   cd ..
-  \$INSTALL_LOC.env/bin/python -m pip install --upgrade 'boost_histogram >= 1.5.1' 'uproot-browser[test-data]'
-  \$INSTALL_LOC.env/bin/python -m pip install -q git+https://github.com/CoffeaTeam/lpcjobqueue.git@v\${LPCJQ_VERSION}
   if [ ! -d "DCTools" ]; then
     echo "DCTools should be cloned into the directory adjacent to cmsdas-longex-MonoZ to enable combine card building and postfit plotting"
-    echo "e.g. git clone -b main git@github.com:yhaddad/DCTools.git"
+    echo "e.g. git clone -b dasmonoz main git@github.com:NJManganelli/DCTools.git"
   fi
+  cd DCTools
+  \$INSTALL_LOC.env/bin/python -m pip install -e .
+  cd ..
+  \$INSTALL_LOC.env/bin/python -m pip install --upgrade 'boost_histogram >= 1.5.1' 'uproot-browser[test-data]'
+  \$INSTALL_LOC.env/bin/python -m pip install -q git+https://github.com/CoffeaTeam/lpcjobqueue.git@v\${LPCJQ_VERSION}
   echo "done."
 }
 
@@ -139,7 +135,6 @@ unset GREP_OPTIONS
 
 [[ -d \$INSTALL_LOC.env ]] || install_all
 source \$INSTALL_LOC.env/bin/activate
-patch_venv_pths
 alias pip="python -m pip"
 
 EOF
@@ -169,12 +164,6 @@ else
   echo "INSTALL_LOC=" \$INSTALL_LOC
 fi
 
-patch_venv_pths() {
-    echo Patching VIRTUAL_ENV .pth files
-    for x in \$(find \$VIRTUAL_ENV -name "*.pth"); do
-        echo \${x} && sed -i "s@\$INSTALL_LOC@\$INSTALL_LOC_EXTERNAL/@g" \${x};
-    done
-}
 
 LPCJQ_VERSION="0.5.0"
 install_env() {
@@ -188,12 +177,15 @@ install_env() {
   cd cmsdas-longex-MonoZ
   \$INSTALL_LOC.env/bin/python -m pip install -e .
   cd ..
-  \$INSTALL_LOC.env/bin/python -m pip install --upgrade 'boost_histogram >= 1.5.1' 'uproot-browser[test-data]'
-  \$INSTALL_LOC.env/bin/python -m pip install -q git+https://github.com/CoffeaTeam/lpcjobqueue.git@v\${LPCJQ_VERSION}
   if [ ! -d "DCTools" ]; then
     echo "DCTools should be cloned into the directory adjacent to cmsdas-longex-MonoZ to enable combine card building and postfit plotting"
-    echo "e.g. git clone -b main git@github.com:yhaddad/DCTools.git"
+    echo "e.g. git clone -b dasmonoz git@github.com:yhaddad/DCTools.git"
   fi
+  cd DCTools
+  \$INSTALL_LOC.env/bin/python -m pip install -e .
+  cd ..
+  \$INSTALL_LOC.env/bin/python -m pip install --upgrade 'boost_histogram >= 1.5.1' 'uproot-browser[test-data]'
+  \$INSTALL_LOC.env/bin/python -m pip install -q git+https://github.com/CoffeaTeam/lpcjobqueue.git@v\${LPCJQ_VERSION}
   echo "done."
 }
 
@@ -218,7 +210,6 @@ unset GREP_OPTIONS
 
 [[ -d .env ]] || install_all
 source \$INSTALL_LOC.env/bin/activate
-patch_venv_pths
 alias pip="python -m pip"
 
 EOF
