@@ -1,0 +1,59 @@
+[project]
+name = "dasmonoz"
+description = "CMS DAS MonoZ Tutorial Framework"
+readme = "README.md"
+version = "0.0.1"
+requires-python = ">=3.9"
+authors = [
+    {name = "Yacine Haddad", email = "yacine.haddad@cern.ch"},
+    {name = "Chad Freer", email = "chad.freer@cern.ch"},
+    {name = "Nick Manganelli", email = "nmangane@cern.ch"}
+]
+maintainers = [
+    {name = "Yacine Haddad", email = "yacine.haddad@cern.ch"},
+    {name = "Chad Freer", email = "chad.freer@cern.ch"},
+    {name = "Nick Manganelli", email = "nmangane@cern.ch"}
+]
+classifiers = [
+    "Development Status :: 1 - Planning",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: BSD License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering"
+]
+dependencies = [
+    "coffea",
+]
+
+# Installable scripts would require moving scripts into the source folder and renaming without hyphens
+# [project.scripts]
+# "make-plots.py" = "dctools.make_plots:main"
+# "makecard-boost-WZ.py" = "dctools.makecard_boost_WZ:main"
+# "merge-hist.py" = "dctools.merge_hist:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+
+[tool.setuptools]
+include-package-data = true
+package-dir = {"" = "processing"}
+
+
+[tool.hatch.build.targets.wheel]
+packages = ["processing/dasmonoz"]
+
+[tool.flake8]
+ignore = ["E203", "E231", "E501", "E722", "W503", "B950"]
+select = ["C", "E", "F", "W", "T", "B", "B9", "I"]
+per-file-ignores = {"tests/*" = ["T"]}
