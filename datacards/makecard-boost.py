@@ -62,12 +62,11 @@ yaml.add_constructor('!include', construct_include, config_loader)
 def main():
     parser = argparse.ArgumentParser(description='The Creator of Combinators')
     parser.add_argument("-i"  , "--input"   , type=str , default="./config/input_DAS_2016.yaml")
-    parser.add_argument("-v"  , "--variable", type=str , default="nnscore")
-    parser.add_argument("-y"  , "--era"     , type=str , default='2018')
+    parser.add_argument("-v"  , "--variable", type=str , default="h1_measMET")
+    parser.add_argument("-y"  , "--era"     , type=str , default='2016')
     parser.add_argument("-c"  , "--channel" , nargs='+', type=str)
     parser.add_argument("-s"  , "--signal"  , nargs='+', type=str)
     parser.add_argument('-n'  , "--name"    , type=str , default='')
-    #parser.add_argument('-p'  , "--plot"    , action="store_true")
     parser.add_argument('--rebin', type=int, default=1, help='rebin')
     parser.add_argument("--bins", 
             type=lambda s: [float(item) for item in s.split(',')], 
@@ -119,37 +118,6 @@ def main():
         if p.ptype == "signal":
             signal = p.name
 
-
-    #if options.plot:
-    #    _plot_channel = plotter.add_process_axis(datasets)
-    #    pred = _plot_channel.project('process','systematic', options.variable)[:hist.loc('data'),:,:]
-    #    data = _plot_channel[{'systematic':'nominal'}].project('process',options.variable)[hist.loc('data'),:] 
-
-    #    plt.figure(figsize=(6,7))
-    #    ax, bx = plotter.mcplot(
-    #        pred[{'systematic':'nominal'}].stack('process'),
-    #        data=None if options.blind else data, 
-    #        syst=pred.stack('process'),
-    #    )
-    #    
-    #    try:
-    #        sig_ewk = _plot_channel[{'systematic':'nominal'}].project('process', variable)[hist.loc('VBSZZ2l2nu'),:]   
-    #        sig_qcd = _plot_channel[{'systematic':'nominal'}].project('process', variable)[hist.loc('ZZ2l2nu'),:]   
-    #        sig_ewk.plot(ax=ax, histtype='step', color='red')
-    #        sig_qcd.plot(ax=ax, histtype='step', color='purple')
-    #    except:
-    #        pass
-    #
-    #    ymax = np.max([line.get_ydata().max() for line in ax.lines if line.get_ydata().shape[0]>0])
-    #    ymin = np.min([line.get_ydata().min() for line in ax.lines if line.get_ydata().shape[0]>0])
-    #
-    #    ax.set_ylim(0.001, 100*ymax)
-    #    ax.set_title(f"channel {options.channel}: {options.era}")
-
-    #    ax.set_yscale('log')
-    #    plt.savefig(f'plot-{options.channel}-{options.variable}-{options.era}.pdf')
-
-
     if options.checksyst:        
         _plot_channel = plotter.add_process_axis(datasets)
         pred = _plot_channel.project('process','systematic', options.variable)[:hist.loc('data'),:,:]
@@ -173,7 +141,6 @@ def main():
     card.add_observation(data_obs)
 
     for _, p in datasets.items():
-        print(" --> ", p.name)
         if len(p.to_boost().shape) == 0 or p.get("nominal").sum().value == 0:
             print(f"--> histogram for the process {p.name} is empty !")
             continue
