@@ -1,7 +1,7 @@
 Introduction
 -------------
 
-Welcome to the mono-Z long excercise for CMSDAS 2026. This site will guide you through the exercise and give you examples on how to use the code. 
+Welcome to the mono-Z long excercise for CMSDAS. This site will guide you through the exercise and give you examples on how to use the code. 
 
 LPC DAS 2026 Facilitators
 ~~~~~~~~~~~~~~~~~~~~~~~~~

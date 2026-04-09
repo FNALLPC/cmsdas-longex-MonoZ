@@ -37,3 +37,4 @@ CMSDAS
 ======
 
 Thank you for participating in the CMSDAS. The original mono-z tutorial code can be found here: `Github <https://github.com/yhaddad/CMSDAS-MonoZ-Tutorial-2024>`_
+The latest version of the code is in a moving branch located at `Github <https://github.com/FNALLPC/cmsdas-longex-MonoZ/tree/dasdev>`_
