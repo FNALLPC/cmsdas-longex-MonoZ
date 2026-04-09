@@ -172,18 +172,22 @@ Take some time to look through the datacards for the other channels (control reg
 Running your own datacards
 **************************
 
-The code to run the datacards can be see here `Datacard <https://github.com/yhaddad/CMSDAS-MonoZ-Tutorial-2024/blob/main/datacards/makecard-boost.py>`_.
+The code to run the datacards can be see here `Datacard <https://github.com/FNALLPC/cmsdas-longex-MonoZ/blob/dasdev/datacards/makecard-boost.py>`_.
 
-In here the systematic variations are described here `systematic_variations <https://github.com/yhaddad/CMSDAS-MonoZ-Tutorial-2024/blob/main/datacards/makecard-boost.py#L187-L214>`_.
-and the rate params here `rate_params <https://github.com/yhaddad/CMSDAS-MonoZ-Tutorial-2024/blob/main/datacards/makecard-boost.py#L217-L231>`_.
+In here the systematic variations are described here `systematic_variations <https://github.com/FNALLPC/cmsdas-longex-MonoZ/blob/dasdev/datacards/makecard-boost.py#L154-L181>`_.
+and the rate params here `rate_params <https://github.com/FNALLPC/cmsdas-longex-MonoZ/blob/dasdev/datacards/makecard-boost.py#L185-L198>`_.
 
-This will run datacards for every file here `Input <https://github.com/yhaddad/CMSDAS-MonoZ-Tutorial-2024/blob/main/datacards/config/input_DAS_2016.yaml>`_.
+This will run datacards for every file here `Input <https://github.com/FNALLPC/cmsdas-longex-MonoZ/blob/dasdev/datacards/config/input_DAS_2016.yaml>`_.
 
 In order to run this code you will need to tell it the region of interest. This can be seen in an example command below:
-Here we can just run the datacard for the SR and examine the datacard to see if it makes sense. You can examine other Dark Matter models by modifying the input_DAS_2016.yaml. 
+Here we can just run the datacard for the SR and examine the datacard to see if it makes sense. You can examine other Dark Matter models by modifying the input_DAS_2016.yaml.
+To use the histograms you've filled, just finish processing the entire input files, which will overwrite the histograms pickle file (the default only contains an h1_measMET histogram and)
 The makecard-boost.py has the systmatics commented out. Feel free to play with these and add them back in. 
 
 
 .. code-block:: html
 
+    # Default before processing
+    python3 makecard-boost.py --name monoZ --input ./config/input_DAS_2016.yaml --era 2016 --variable h1_measMET --channel catSignal-0jet
+    # After processing and overwriting the default pickle file's histograms
     python3 makecard-boost.py --name monoZ --input ./config/input_DAS_2016.yaml --era 2016 --variable met_pt --channel catSignal-0jet
