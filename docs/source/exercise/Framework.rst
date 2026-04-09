@@ -28,15 +28,18 @@ Install framework:
    mkdir <working_directory>
    cd <working_directory>
    git clone -b dasmonoz main git@github.com:NJManganelli/DCTools.git
-   git clone -b daslpc2026 git@github.com:FNALLPC/cmsdas-longex-MonoZ.git
+   git clone -b <dasbranch>  git@github.com:FNALLPC/cmsdas-longex-MonoZ.git
+   # for bash shell on lxplus
    sh cmsdas-longex-MonoZ/bootstrap.sh bash cern
-   # or for zsh shell
+   # or for zsh shell on lxplus
    sh cmsdas-longex-MonoZ/bootstrap.sh zsh cern
 
    # LPC
    mkdir ~/nobackup/<working_directory>
    cd ~/nobackup/<working_directory>
-   git clone git@github.com:FNALLPC/cmsdas-longex-MonoZ.git
+   git clone -b dasmonoz main git@github.com:NJManganelli/DCTools.git
+   git clone -b <dasbranch>  git@github.com:FNALLPC/cmsdas-longex-MonoZ.git
+   # for bash shell
    sh cmsdas-longex-MonoZ/bootstrap.sh bash lpc
    # or for zsh shell
    sh cmsdas-longex-MonoZ/bootstrap.sh zsh lpc
@@ -51,18 +54,19 @@ To start the singularity environment.
    # LPC
    cd ~/nobackup/<working_directory>
 
+   # Then...
    # BASH
    ./bash-shell
    # ZSH
    ./zsh-shell
    
-If you want to start a jupyter session. Log into lxplus witht the following:
+If you want to start a jupyter session. Log into lxplus with the following:
 
 .. code-block:: sh
 
    ssh -L localhost:8NNN:localhost:8NNN lxplus.cern.ch
 
-Choose the port above (like 8099) and match it in the command below to start a jupyter session. You will need to copy the url from the following.
+Choose the port above (like 8099; it should be different from anyone else logging into the node, to avoid conflicts, which will cause the jupyter server to fail to connect or render)) and match it in the command below to start a jupyter session. You will need to copy the url from the following.
 
 .. code-block:: sh
 
@@ -75,7 +79,7 @@ Choose the port above (like 8099) and match it in the command below to start a j
    # Finally
    jupyter lab --no-browser --port 8NNN
 
-Ensure you select "smqawa" as the kernel in the top right to be able to import dasmonoz or dctools directly!
+Ensure you select "smqawa" as the kernel in the top right to be able to import dasmonoz or dctools directly! The default kernel will be a generic Python3 environment with just the core singularity image packages.
 
 List of backgrounds
 ~~~~~~~~~~~~~~~~~~~
@@ -109,7 +113,10 @@ An example of how to look at a sample root file:
 
 .. code-block:: sh
 
-   root -l /eos/user/c/cmsdas/long-exercises/MonoZ/CMSDAS_NTuples/ZZTo2L2Nu_13TeV_powheg_pythia8_ext1/tree_0.root
+   # lxplus
+   root -l root://cms-xrd-global.cern.ch//eos/user/c/cmsdas/long-exercises/MonoZ/CMSDAS_NTuples/ZZTo2L2Nu_13TeV_powheg_pythia8_ext1/tree_0.root
+   # lpc
+   root -l root://cmseos.fnal.gov//store/user/cmsdas/2025/long_exercises/long-ex-monoz/aggdatasets/ZZTo2L2Nu_13TeV_powheg_pythia8_ext1/aggtree_0.root
 
 This will open a root session where you can look at a sample file quickly in an interactive session:
 
